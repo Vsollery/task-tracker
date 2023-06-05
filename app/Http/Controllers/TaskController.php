@@ -22,7 +22,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.todos.create');
     }
 
     /**
@@ -63,5 +63,30 @@ class TaskController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function finished(){
+        $tasks = Task::where('is_completed', 1)->get();
+        return view('tasks.todos.finished',[
+            'tasks' => $tasks
+        ]);
+    }
+
+    public function unfinished(){
+        $tasks = Task::where('is_completed', 0)->get();
+        return view('tasks.todos.unfinished',[
+            'tasks' => $tasks
+        ]);
+    }
+
+    public function checklist(Request $request){
+        $id = $request->id;
+        $task = Task::where('id', '=', ($id))->first();
+    // dd($task);
+        if ($task) {
+            $task->is_completed = 1;
+            $task->save();
+            return redirect('/dashboard/mytasks');
+        }
     }
 }

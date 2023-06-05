@@ -1,11 +1,39 @@
 @extends('tasks.layouts.main')
 
 @section('container')
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Your Tasks Status</h1>
+    </div>
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Your Tasks Status</h1>
-</div>
-
-
-
+    <div class="container d-flex justify-content-center">
+        <div class="row">
+            <div class="col-md-4 mb-3" style="width: 20rem;">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Tasks</h5>
+                        <p class="card-text">You have ... Tasks</p>
+                        <a href="/dashboard/mytasks/" class="card-link">View Task</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3" style="width: 20rem;">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Finished Tasks</h5>
+                        <p class="card-text">You have ... Finished Tasks</p>
+                        <a href="/dashboard/mytasks/finished" class="card-link">View Task</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3" style="width: 20rem;">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Unfinished Tasks</h5>
+                        <p class="card-text">You have ... Unfinished Tasks</p>
+                        <a href="/dashboard/mytasks/unfinished" class="card-link">View Task</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
