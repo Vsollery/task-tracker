@@ -32,7 +32,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $formFields = $request->validate([
             'title' => 'required | max: 250',
             'description' => ['required','max:1000']
@@ -55,9 +55,11 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Task $mytask)
     {
-        //
+        return view('tasks.todos.edit', [
+            'task' => $mytask,
+        ]);
     }
 
     /**

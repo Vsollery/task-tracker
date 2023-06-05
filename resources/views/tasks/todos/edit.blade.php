@@ -2,7 +2,7 @@
 
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Add New Task</h1>
+        <h1 class="h2">Edit Task</h1>
     </div>
 
     <div class="col-lg-8">
@@ -12,7 +12,7 @@
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input name="title" type="text" class="form-control @error('judul') is-invalid @enderror" id="title"
-                    value="{{ old('title') }}">
+                    value="{{ $task->title }}">
                 @error('title')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -20,13 +20,13 @@
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                <textarea class="form-control" id="description" name="description" rows="3">{{ $task->description }}</textarea>
                 @error('description')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary mb-3">Add Task</button>
+            <button type="submit" class="btn btn-primary mb-3">Update Task</button>
         </form>
     </div>
 @endsection
