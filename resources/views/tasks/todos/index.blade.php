@@ -42,16 +42,16 @@
                         <td>
                             {{-- <a href="/" class="badge bg-success"><span data-feather="check"
                                     class="align-text-bottom"></span></i></a> --}}
-                            <a href="/" class="badge bg-primary"> <span data-feather="eye"
+                            <a href="/dashboard/mytasks/{{ $task->id }}" class="badge bg-primary"> <span data-feather="eye"
                                     class="align-text-bottom"></span></a>
-                            <a href="/" class="badge bg-warning"> <span data-feather="edit"
+                            <a href="/dashboard/mytasks/{{ $task->id }}/edit" class="badge bg-warning"> <span data-feather="edit"
                                     class="align-text-bottom"></span></a>
-                            <form action="/dashboard/posts/{{ $task->id }}" method="post" class="d-inline">
-                                @method('delete')
+                            <form action="/dashboard/mytasks/{{ $task->id }}" method="post" class="d-inline">
                                 @csrf
-                                <button class="badge bg-danger border-0"
-                                    onclick="return confirm('Are you sure you want to delet this post?')"><span
-                                        data-feather="trash" class="align-text-bottom"></span></button>
+                                @method('DELETE')
+                                <button class="badge bg-danger border-0" onclick="return confirm('Are you sure you want to delete this task?')">
+                                    <span data-feather="trash" class="align-text-bottom"></span>
+                                </button>
                             </form>
                         </td>
                     </tr>

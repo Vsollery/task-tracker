@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Routing\Controller;
 
 class TaskController extends Controller
 {
@@ -30,15 +32,24 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        $formFields = $request->validate([
+            'title' => 'required | max: 250',
+            'description' => ['required','max:1000']
+        ]);
+
+        $formFields['user_id'] = 1;
+        Task::create($formFields);
+
+        return redirect('/dashboard/mytasks');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Task $task)
     {
-        //
+        return view('tasks.todos.show');
     }
 
     /**
@@ -59,10 +70,14 @@ class TaskController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param  \App\Models\Task  
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id)
+    public function destroy(Task $mytask)
     {
-        //
+        // dd(request()->id);
+        $mytask->delete();
+        return redirect('/dashboard/mytasks');
     }
 
     public function finished(){

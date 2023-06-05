@@ -35,4 +35,9 @@ Route::get('/dashboard/mytasks/unfinished',[TaskController::class, 'unfinished']
 Route::post('/dashboard/mytasks/{id}',[TaskController::class, 'checklist']);
 Route::resource('/dashboard/mytasks',TaskController::class);
 
+// Route::delete('/dashboard/mytasks/{task}', function(Task $task){
+//     Task::destroy($task->id);
+//     return redirect('/dashboard/mytasks');
+// });
+
 

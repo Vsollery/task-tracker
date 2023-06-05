@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
 
      <!-- Scripts -->
-     @vite(['resources/css/app.css', 'resources/js/app.js'])
+     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
     <title>TO DO | {{ $title }}</title>
 </head>
