@@ -6,9 +6,9 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="post" action="/dashboard/mytasks" enctype="multipart/form-data">
+        <form method="post" action="/dashboard/mytasks/{{ $task->id }}" enctype="multipart/form-data">
             @csrf
-
+            @method('PUT')
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input name="title" type="text" class="form-control @error('judul') is-invalid @enderror" id="title"
@@ -20,7 +20,7 @@
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3">{{ $task->description }}</textarea>
+                <textarea class="form-control" id="description" name="description" rows="10">{{ $task->description }}</textarea>
                 @error('description')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror

@@ -34,7 +34,7 @@ class TaskController extends Controller
     {
         // dd($request);
         $formFields = $request->validate([
-            'title' => 'required | max: 250',
+            'title' => 'required | max: 200',
             'description' => ['required','max:1000']
         ]);
 
@@ -65,9 +65,15 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Task $mytask)
     {
-        //
+        $formFields = $request->validate([
+            'title'=> 'required|max:200',
+            'description' => ['required','max:1000']
+        ]);
+
+        $mytask->update($formFields);
+        return redirect('/dashboard/mytasks');
     }
 
     /**
