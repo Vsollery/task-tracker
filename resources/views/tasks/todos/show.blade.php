@@ -17,7 +17,7 @@
                             <div class="row">
                                 <div class="col mb-3">
                                     <p class="small text-muted mb-1">Created at</p>
-                                    <p>{{ $task->created_at }}</p>
+                                    <p>{{ $task->created_at->diffForHumans() }}</p>
                                 </div>
                                 <div class="col mb-3">
                                     <p class="small text-muted mb-1">Title</p>
