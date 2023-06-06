@@ -27,8 +27,8 @@ Route::get('dashboard', function(){
     $task = Task::latest()->where('user_id', auth()->user()->id);
     return view('tasks.index',[
         "tasks" => $task,
-        "tasks_complete" => Task::where('is_completed', 1)->get(),
-        "tasks_incomplete" => Task::where('is_completed', 0)->get(),
+        "tasks_complete" => auth()->user()->tasks()->where('is_completed', 1)->get(),
+        "tasks_incomplete" => auth()->user()->tasks()->where('is_completed', 0)->get(),
     ]);
 })->middleware('auth');
 
