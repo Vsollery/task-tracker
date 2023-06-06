@@ -4,6 +4,7 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,12 +29,18 @@ Route::get('dashboard', function(){
         "tasks_complete" => Task::where('is_completed', 1)->get(),
         "tasks_incomplete" => Task::where('is_completed', 0)->get(),
     ]);
-});
+})->middleware('auth');
 
 Route::get('/dashboard/mytasks/finished',[TaskController::class, 'finished']);
 Route::get('/dashboard/mytasks/unfinished',[TaskController::class, 'unfinished']);
 Route::post('/dashboard/mytasks/{id}',[TaskController::class, 'checklist']);
-Route::resource('/dashboard/mytasks', TaskController::class);
+Route::resource('/dashboard/mytasks', TaskController::class)->middleware('auth');
+
+Route::get('/register',[UserController::class, 'create']);
+Route::post('/register',[UserController::class, 'store']);
+Route::get('/login',[UserController::class, 'login'])->name('login');
+Route::post('/login',[UserController::class, 'authenticate']);
+Route::post('/logout',[UserController::class, 'logout']);
 
 // Route::delete('/dashboard/mytasks/{task}', function(Task $task){
 //     Task::destroy($task->id);
