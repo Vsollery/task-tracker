@@ -15,7 +15,7 @@ class TaskController extends Controller
     public function index()
     {
         return view('tasks.todos.index',[
-            'tasks' => Task::all()
+            'tasks' => Task::latest()->where('user_id', auth()->user()->id)->get()
         ]);
     }
 
@@ -38,7 +38,7 @@ class TaskController extends Controller
             'description' => ['required','max:1000']
         ]);
 
-        $formFields['user_id'] = 1;
+        $formFields['user_id'] = auth()->user()->id;
         Task::create($formFields);
 
         return redirect('/dashboard/mytasks');
@@ -91,16 +91,19 @@ class TaskController extends Controller
     }
 
     public function finished(){
-        $tasks = Task::where('is_completed', 1)->get();
+        $task = auth()->user()->tasks()->where('is_completed', 1)->get();
+        // $tasks = Task::where('is_completed', 1)->get();
         return view('tasks.todos.finished',[
-            'tasks' => $tasks
+            'tasks' => $task
         ]);
     }
 
     public function unfinished(){
-        $tasks = Task::where('is_completed', 0)->get();
+        $task = auth()->user()->tasks()->where('is_completed', 0)->get();
+        // dd($task);
+        // $tasks = Task::where('is_completed', 0)->get();
         return view('tasks.todos.unfinished',[
-            'tasks' => $tasks
+            'tasks' => $task
         ]);
     }
 

@@ -21,7 +21,7 @@
 
                 <div class="form-floating">
                     <label for="inputEmail" class="sr-only">Email</label>
-                    <input type="email" id="inputEmail" name="email" class="form-control @error('email') is-invalid @enderror"placeholder="Email" required>
+                    <input type="email" id="inputEmail" name="email" class="form-control @error('email') is-invalid @enderror"placeholder="Email" value="{{ old('name') }}" required>
                     @error('email')
                     <div class="invalid-feedback">
                         {{ $message }}
