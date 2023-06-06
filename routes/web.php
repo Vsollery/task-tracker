@@ -25,8 +25,8 @@ Route::get('/', function () {
 Route::get('dashboard', function(){
     return view('tasks.index',[
         "tasks" => Task::all(),
-        "tasks_complete" => Task::where('is_completed', 0)->get(),
-        "tasks_incomplete" => Task::where('is_completed', 1)->get(),
+        "tasks_complete" => Task::where('is_completed', 1)->get(),
+        "tasks_incomplete" => Task::where('is_completed', 0)->get(),
     ]);
 });
 
