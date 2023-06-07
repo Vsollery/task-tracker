@@ -23,14 +23,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('dashboard', function(){
-    $task = Task::latest()->where('user_id', auth()->user()->id);
-    return view('tasks.index',[
-        "tasks" => $task,
-        "tasks_complete" => auth()->user()->tasks()->where('is_completed', 1)->get(),
-        "tasks_incomplete" => auth()->user()->tasks()->where('is_completed', 0)->get(),
-    ]);
-})->middleware('auth');
+Route::get('dashboard', [TaskController:: class, 'status'])->middleware('auth');
 
 Route::get('/dashboard/mytasks/finished',[TaskController::class, 'finished']);
 Route::get('/dashboard/mytasks/unfinished',[TaskController::class, 'unfinished']);

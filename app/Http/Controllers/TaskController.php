@@ -14,7 +14,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('tasks.todos.index',[
+        return view('tasks.todos.index', [
             'tasks' => Task::latest()->where('user_id', auth()->user()->id)->get()
         ]);
     }
@@ -35,7 +35,7 @@ class TaskController extends Controller
         // dd($request);
         $formFields = $request->validate([
             'title' => 'required | max: 200',
-            'description' => ['required','max:1000']
+            'description' => ['required', 'max:1000']
         ]);
 
         $formFields['user_id'] = auth()->user()->id;
@@ -49,7 +49,7 @@ class TaskController extends Controller
      */
     public function show(Task $mytask)
     {
-        return view('tasks.todos.show',[
+        return view('tasks.todos.show', [
             'task' => $mytask
         ]);
     }
@@ -70,8 +70,8 @@ class TaskController extends Controller
     public function update(Request $request, Task $mytask)
     {
         $formFields = $request->validate([
-            'title'=> 'required|max:200',
-            'description' => ['required','max:1000']
+            'title' => 'required|max:200',
+            'description' => ['required', 'max:1000']
         ]);
 
         $mytask->update($formFields);
@@ -90,27 +90,40 @@ class TaskController extends Controller
         return redirect('/dashboard/mytasks');
     }
 
-    public function finished(){
+    public function status()
+    {
+        $task = Task::latest()->where('user_id', auth()->user()->id);
+        return view('tasks.index', [
+            "tasks" => $task,
+            "tasks_complete" => auth()->user()->tasks()->where('is_completed', 1)->get(),
+            "tasks_incomplete" => auth()->user()->tasks()->where('is_completed', 0)->get(),
+        ]);
+    }
+
+    public function finished()
+    {
         $task = auth()->user()->tasks()->where('is_completed', 1)->get();
         // $tasks = Task::where('is_completed', 1)->get();
-        return view('tasks.todos.finished',[
+        return view('tasks.todos.finished', [
             'tasks' => $task
         ]);
     }
 
-    public function unfinished(){
+    public function unfinished()
+    {
         $task = auth()->user()->tasks()->where('is_completed', 0)->get();
         // dd($task);
         // $tasks = Task::where('is_completed', 0)->get();
-        return view('tasks.todos.unfinished',[
+        return view('tasks.todos.unfinished', [
             'tasks' => $task
         ]);
     }
 
-    public function checklist(Request $request){
+    public function checklist(Request $request)
+    {
         $id = $request->id;
         $task = Task::where('id', '=', ($id))->first();
-    // dd($task);
+        // dd($task);
         if ($task) {
             $task->is_completed = 1;
             $task->save();
