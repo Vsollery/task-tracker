@@ -28,5 +28,10 @@
 
             <button type="submit" class="btn btn-primary mb-3">Update Task</button>
         </form>
+
+        <a href="/dashboard/mytasks" class="d-block mt-5 mb-3">
+            <button type="button" class="btn btn-dark"> <span data-feather="arrow-left"
+                    class="align-text-bottom"></span> Back</button>
+        </a>
     </div>
 @endsection
