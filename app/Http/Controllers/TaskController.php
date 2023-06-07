@@ -41,7 +41,7 @@ class TaskController extends Controller
         $formFields['user_id'] = auth()->user()->id;
         Task::create($formFields);
 
-        return redirect('/dashboard/mytasks');
+        return redirect('/dashboard/mytasks')->with('message', 'New Task Added Successfully!');
     }
 
     /**
@@ -75,7 +75,7 @@ class TaskController extends Controller
         ]);
 
         $mytask->update($formFields);
-        return redirect('/dashboard/mytasks');
+        return redirect('/dashboard/mytasks')->with('message', 'Task Updated Successfully');
     }
 
     /**
@@ -87,7 +87,7 @@ class TaskController extends Controller
     {
         // dd(request()->id);
         $mytask->delete();
-        return redirect('/dashboard/mytasks');
+        return redirect('/dashboard/mytasks')->with('message', 'Task Deleted');
     }
 
     public function status()
