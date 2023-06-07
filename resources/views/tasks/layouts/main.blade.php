@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TO DO | My Tasks</title>
+    <title>whatodo | My Tasks</title>
 
     <!-- Feather Icon -->
     <script src="https://unpkg.com/feather-icons"></script>

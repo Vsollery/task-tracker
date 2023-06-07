@@ -19,6 +19,13 @@
                                     <p class="small text-muted mb-1">Created at</p>
                                     <p>{{ $task->created_at->diffForHumans() }}</p>
                                 </div>
+                                @if ($task->created_at != $task->updated_at)
+                                    <div class="col mb-3">
+                                        <p class="small text-muted mb-1">Edited</p>
+                                        <p>{{ $task->updated_at->diffForHumans() }}</p>
+                                    </div>
+                                @endif
+
                                 <div class="col mb-3">
                                     <p class="small text-muted mb-1">Title</p>
                                     <p>{{ $task->title }}</p>
