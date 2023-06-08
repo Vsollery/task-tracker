@@ -14,6 +14,9 @@
             <li class="nav-item">
                 <a class="nav-link " href="/about">About</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/discover">Discover</a>
+            </li>
             @auth
                 <li class="nav-item">
                     <a class="nav-link " href="/dashboard">Your Tasks</a>

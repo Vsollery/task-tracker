@@ -5,7 +5,7 @@
         <h1 class="h2">Task Number: 1</h1>
     </div>
 
-    <section class="h-100 h-custom" style="background-color: #eee;">
+    <section class="h-100 h-custom">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-lg-8 col-xl-6">

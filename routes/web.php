@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
@@ -20,6 +21,22 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('home',[
         "title" => "Home"
+    ]);
+});
+
+Route::get('/discover', function () {
+    return view('discover',[
+        "title" => "Discover",
+        "users" => User::latest()->paginate(3)->withQueryString()
+    ]);
+});
+
+Route::get('/discover/{id}', function (User $id) {
+    // dd($user);
+    return view('show',[
+        "title" => "Discover",
+        "user" => $id,
+        "tasks" => Task::where('user_id', $id)->get()
     ]);
 });
 
