@@ -56,6 +56,8 @@ Route::get('/login',[UserController::class, 'login'])->name('login');
 Route::post('/login',[UserController::class, 'authenticate']);
 Route::post('/logout',[UserController::class, 'logout']);
 
+Route::get('/manage-users', [AdminController::class,'index'])->middleware('admin');
+
 // Route::delete('/dashboard/mytasks/{task}', function(Task $task){
 //     Task::destroy($task->id);
 //     return redirect('/dashboard/mytasks');

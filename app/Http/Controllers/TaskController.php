@@ -127,7 +127,7 @@ class TaskController extends Controller
         if ($task) {
             $task->is_completed = 1;
             $task->save();
-            return redirect('/dashboard/mytasks');
+            return back();
         }
     }
 }

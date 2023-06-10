@@ -5,6 +5,12 @@
         <h1 class="h2">Your Tasks Status</h1>
     </div>
 
+    @if (session()->has('message'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" class="alert alert-success" role="alert">
+            {{ session('message') }}
+        </div>
+    @endif
+
     <div class="container d-flex justify-content-center">
         <div class="row">
             <div class="col-md-4 mb-3" style="width: 20rem;">
