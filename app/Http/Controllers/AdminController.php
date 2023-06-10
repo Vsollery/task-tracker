@@ -15,7 +15,14 @@ class AdminController extends Controller
     public function index(){
         return view('tasks.admin.index',[
             'title' => 'Admin',
-            'users' => User::all()
+            'users' => User::where('id','!=', auth()->user()->id)->latest()->get()
         ]);
+    }
+
+    public function destroy(User $user)
+    {
+        // dd(request()->id);
+        $user->delete();
+        return redirect('/manage-users')->with('message', 'User Deleted');
     }
 }

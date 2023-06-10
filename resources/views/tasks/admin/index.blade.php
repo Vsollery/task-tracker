@@ -13,6 +13,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Amount of Tasks</th>
+                    <th scope="col">Roles</th>
                     <th scope="col">Joined</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -23,11 +24,16 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->tasks->count() }}</td>
+                        @if($user->is_admin == 0)
+                            <td> <span class="badge bg-info">Normal User</span></td> 
+                        @else
+                            <td> <span class="badge bg-success">Admin</span></td> 
+                        @endif
                         <td>{{ $user->created_at->diffForHumans() }}</td>
                         <td>
                             <form action="/manage-users/{{ $user->id }}" method="post" class="d-inline">
                                 @csrf
-                                @method('DELETE')
+                                @method('delete')
                                 <button class="badge bg-danger border-0"
                                     onclick="return confirm('Are you sure you want to delete this user?')">
                                     <span data-feather="trash" class="align-text-bottom"></span>
