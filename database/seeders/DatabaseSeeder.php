@@ -23,15 +23,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // User::factory()->create([
-        //     'name' => 'Admin',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => Hash::make('admin')
-
-        // ]);
-
-        User::factory(3)->create();
-        Task::factory(6)->create();
+        User::factory(5)->create();
+        Task::factory(15)->create();
 
     }
 }
