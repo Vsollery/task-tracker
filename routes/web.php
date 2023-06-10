@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -31,16 +32,18 @@ Route::get('/discover', function () {
     ]);
 });
 
-Route::get('/discover/{id}', function (User $id) {
+Route::get('/discover/{user}', function (User $user) {
     // dd($user);
     return view('show',[
         "title" => "Discover",
-        "user" => $id,
-        "tasks" => Task::where('user_id', $id)->get()
+        "user" => $user,
+        "tasks" => Task::where('user_id', $user->id)->get()
     ]);
+
+
 });
 
-Route::get('dashboard', [TaskController:: class, 'status'])->middleware('auth');
+Route::get('/dashboard', [TaskController:: class, 'status'])->middleware('auth');
 
 Route::get('/dashboard/mytasks/finished',[TaskController::class, 'finished']);
 Route::get('/dashboard/mytasks/unfinished',[TaskController::class, 'unfinished']);
