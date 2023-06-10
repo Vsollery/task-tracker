@@ -22,7 +22,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $task->title }}</td>
                             <td>
-                                Finished
+                                <span class="badge bg-success">Finished</span>
                             </td>
                             <td>
                                 <a href="/dashboard/mytasks/{{ $task->id }}" class="badge bg-primary"> <span

@@ -22,7 +22,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $task->title }}</td>
                             <td>
-                                Unfinished
+                                <span class="badge bg-danger">Unfinished</span>
                             </td>
                             <td>
                                 <form action="/dashboard/mytasks/{{ $task->id }}" method="post" class="d-inline">

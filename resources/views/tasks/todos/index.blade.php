@@ -25,9 +25,9 @@
                             <td>{{ $task->title }}</td>
                             <td>
                                 @if ($task->is_completed == 1)
-                                    Finished
+                                    <span class="badge bg-success">Finished</span>
                                 @else
-                                    Unfinised
+                                    <span class="badge bg-danger">Unfinished</span>
                                 @endif
                             </td>
                             <td>
