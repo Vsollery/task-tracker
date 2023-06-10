@@ -13,7 +13,7 @@
      <!-- Scripts -->
      @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <title>TO DO | {{ $title }}</title>
+    <title>whatodo | {{ $title }}</title>
 </head>
 <body>
     @include('partials.navbar')
