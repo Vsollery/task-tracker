@@ -25,4 +25,19 @@ class AdminController extends Controller
         $user->delete();
         return redirect('/manage-users')->with('message', 'User Deleted');
     }
+
+    public function changeStats(Request $request){
+        $id = $request->id;
+        $user = User::where('id', '=', ($id))->first();
+        // dd($task);
+        if ($user->is_admin == 0) {
+            $user->is_admin = 1;
+            $user->save();
+            return back()->with('message','Role Changed to Admin Successfully');
+        }else{
+            $user->is_admin = 0;
+            $user->save();
+            return back()->with('message','Role Changed to User Successfully');
+        }
+    }   
 }

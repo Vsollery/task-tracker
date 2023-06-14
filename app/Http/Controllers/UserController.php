@@ -53,7 +53,7 @@ class UserController extends Controller
             if(auth()->user()->is_admin == 1){
                 $request->session()->regenerate();
                 
-                return redirect('/dashboard')->with('message', 'Admin logged in');   
+                return redirect('/manage-users')->with('message', 'Admin logged in');   
             }else{
                 $request->session()->regenerate();
                 

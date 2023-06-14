@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Routing\Controller;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -60,6 +65,7 @@ class TaskController extends Controller
     public function edit(Task $mytask)
     {
         return view('tasks.todos.edit', [
+            'user' => User::where('is_admin', 1)->get(),
             'task' => $mytask,
         ]);
     }
@@ -94,6 +100,7 @@ class TaskController extends Controller
     {
         $task = Task::latest()->where('user_id', auth()->user()->id);
         return view('tasks.index', [
+            'user' => User::where('is_admin', 1)->get(),
             "tasks" => $task,
             "tasks_complete" => auth()->user()->tasks()->where('is_completed', 1)->get(),
             "tasks_incomplete" => auth()->user()->tasks()->where('is_completed', 0)->get(),

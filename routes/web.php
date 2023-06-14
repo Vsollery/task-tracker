@@ -39,8 +39,6 @@ Route::get('/discover/{user}', function (User $user) {
         "user" => $user,
         "tasks" => Task::where('user_id', $user->id)->get()
     ]);
-
-
 });
 
 Route::get('/dashboard', [TaskController:: class, 'status'])->middleware('auth');
@@ -58,6 +56,7 @@ Route::post('/logout',[UserController::class, 'logout']);
 
 Route::get('/manage-users', [AdminController::class,'index'])->middleware('admin');
 Route::delete('/manage-users/{user}', [AdminController::class,'destroy'])->middleware('admin');
+Route::post('/manage-users/{id}', [AdminController::class,'changeStats'])->middleware('admin');
 
 // Route::delete('/dashboard/mytasks/{task}', function(Task $task){
 //     Task::destroy($task->id);

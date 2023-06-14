@@ -24,13 +24,27 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->tasks->count() }}</td>
-                        @if($user->is_admin == 0)
-                            <td> <span class="badge bg-info">Normal User</span></td> 
+                        @if ($user->is_admin == 0)
+                            <td> <span class="badge bg-info">Normal User</span></td>
                         @else
-                            <td> <span class="badge bg-success">Admin</span></td> 
+                            <td> <span class="badge bg-success">Admin</span></td>
                         @endif
                         <td>{{ $user->created_at->diffForHumans() }}</td>
                         <td>
+                            <form action="/manage-users/{{ $user->id }}" method="post" class="d-inline">
+                                @csrf
+                                @if ($user->is_admin == 0)
+                                    <button class="badge bg-info border-0"
+                                        onclick="return confirm ('Change Role of User?')"><span data-feather="edit-2"
+                                            class="align-text-bottom"></span>
+                                    </button>
+                                @else
+                                    <button class="badge bg-success border-0"
+                                        onclick="return confirm ('Change Role of User?')"><span data-feather="edit-2"
+                                            class="align-text-bottom"></span>
+                                    </button>
+                                @endif
+                            </form>
                             <form action="/manage-users/{{ $user->id }}" method="post" class="d-inline">
                                 @csrf
                                 @method('delete')
